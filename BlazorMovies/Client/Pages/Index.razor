@@ -1,44 +1,9 @@
 ﻿@page "/"
 <div>
     <h3> Movie </h3>
-    @if (movies == null)
-    {
-        <text> Loading ...</text>
-    }
-    else
-    {
-    @foreach (var movie in movies)
-    {
-        <p>Title: @((MarkupString)movie.Title) </p>
-        <p> Release Name:<b>@movie.ReleaseDate.ToString("dd MM yyyy")</b></p>
-    }
-    
-    }
+    <MoviesList />
 
 </div>
 @code {
-    string name = "Felipe";
-    List<Movie> movies;
-    protected async override Task OnInitializedAsync()
-    {
-        await Task.Delay(3000);
-        movies = new List<Movie>()
-    {
-               new Movie(){Title = "<b>Spider-Man</b>", ReleaseDate = new DateTime(2019, 7, 2)},
-               new Movie(){Title = "<i>Moana</i>", ReleaseDate = new DateTime(2016, 11, 23)},
-               new Movie(){Title = "Inception", ReleaseDate = new DateTime(2010, 7, 16)}
-        };
-    }
-
-
-    void WriteInLog()
-    {
-        Console.WriteLine("I have been clicked");
-    }
-    Movie spiderman = new Movie()
-    {
-        Title = "Spider man",
-        ReleaseDate = new DateTime(2019, 7, 2)
-    };
-
+    
 }

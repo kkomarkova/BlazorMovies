@@ -1,0 +1,9 @@
+﻿<div>
+    <p>Title: @Movie.Title </p>
+    <p> Release Name:<b>@Movie.ReleaseDate.ToString("dd MM yyyy")</b></p>
+</div>
+
+@code {
+    [Parameter] public Movie Movie { get; set; }
+
+}

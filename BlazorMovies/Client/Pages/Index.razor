@@ -1,0 +1,13 @@
+﻿@page "/"
+<p> Hello, @StringUtilities.CustomToUpper(name) </p>
+<button  @onclick="@WriteInLog">Click me</button>
+@code {
+    string name = "Felipe";
+   
+
+    void WriteInLog()
+    {
+        Console.WriteLine("I have been clicked");
+    }
+
+}

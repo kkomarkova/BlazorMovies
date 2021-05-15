@@ -1,14 +1,14 @@
-﻿@if (movies == null)
+﻿@if (Movies == null)
 {
-    <text> Loading ...</text>
+    <img src="https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
 }
-else if (movies.Count == 0)
+else if (Movies.Count == 0)
 {
     <text> There are no records to show</text>
 }
 else
 {
-    @foreach (var movie in movies)
+    @foreach (var movie in Movies)
     {
         <p>Title: @movie.Title </p>
         <p> Release Name:<b>@movie.ReleaseDate.ToString("dd MM yyyy")</b></p>
@@ -16,24 +16,15 @@ else
 
 }
 @code {
-    List<Movie> movies;
+    [Parameter] public List<Movie> Movies { get; set; }
     protected override void OnInitialized()
     {
-
-        movies = new List<Movie>()
+        Movies = new List<Movie>()
 {
                new Movie(){Title = "Spider-Man", ReleaseDate = new DateTime(2019, 7, 2)},
                new Movie(){Title = "Moana", ReleaseDate = new DateTime(2016, 11, 23)},
                new Movie(){Title = "Inception", ReleaseDate = new DateTime(2010, 7, 16)}
         };
     }
-    void WriteInLog()
-    {
-        Console.WriteLine("I have been clicked");
-    }
-    Movie spiderman = new Movie()
-    {
-        Title = "Spider man",
-        ReleaseDate = new DateTime(2019, 7, 2)
-    };
+
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorMovies.Shared.Entities
 {
-    public class Movies
+    public class Movie
     {
         public string Title { get; set; }
         public DateTime ReleaseDate { get; set; }

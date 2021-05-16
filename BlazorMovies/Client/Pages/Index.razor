@@ -1,4 +1,6 @@
 ﻿@page "/"
+@inject SingletonService singleton
+<p>Singleton count: @singleton.Value</p>
 <div>
     <h3> Movie </h3>
     <MoviesList Movies="movies" />
@@ -13,7 +15,7 @@
     {
         //await Task.Delay(2000);
         movies = new List<Movie>()
-        {
+    {
                       new Movie(){Title = "Spider-Man", ReleaseDate = new DateTime(2019, 7, 2)},
                     new Movie(){Title = "Moana", ReleaseDate = new DateTime(2016, 11, 23)},
                     new Movie(){Title = "Inception", ReleaseDate = new DateTime(2010, 7, 16)}

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,22 @@ namespace BlazorMovies.Client.Pages
     {
         [Inject] SingletonService singleton { get; set; }
         [Inject] TransientService transient { get; set; }
+        [Inject] IJSRuntime js { get; set; }
         private int currentCount = 0;
+        private static int currentCountStatic = 0;
 
-        private void IncrementCount()
+        private async Task IncrementCount()
         {
             currentCount++;
-            singleton.Value += 1;
-            transient.Value += 1;
+            singleton.Value = currentCount;
+            transient.Value = currentCount;
+            currentCountStatic++;
+            await js.InvokeVoidAsync("dotnetStaticInvocation");
+        }
+        [JSInvokable]
+        public static Task<int> GetCurrentCount()
+        {
+            return Task.FromResult(currentCountStatic);
         }
     }
 }

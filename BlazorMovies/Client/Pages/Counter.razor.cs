@@ -14,14 +14,20 @@ namespace BlazorMovies.Client.Pages
         [Inject] IJSRuntime js { get; set; }
         private int currentCount = 0;
         private static int currentCountStatic = 0;
-
-        private async Task IncrementCount()
+        [JSInvokable]
+        public async Task IncrementCount()
         {
             currentCount++;
             singleton.Value = currentCount;
             transient.Value = currentCount;
             currentCountStatic++;
             await js.InvokeVoidAsync("dotnetStaticInvocation");
+        }
+        private async Task IncrementCountJavaScript()
+        {
+            
+            await js.InvokeVoidAsync("dotnetInstanceInvocation",
+                DotNetObjectReference.Create(this));
         }
         [JSInvokable]
         public static Task<int> GetCurrentCount()

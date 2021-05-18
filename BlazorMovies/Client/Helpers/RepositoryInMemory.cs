@@ -19,4 +19,3 @@ namespace BlazorMovies.Client.Helpers
         }
     }
     }
-}

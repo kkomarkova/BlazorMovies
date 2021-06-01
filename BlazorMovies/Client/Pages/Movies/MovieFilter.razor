@@ -5,8 +5,7 @@
         <label for="title" class="sr-only">Title</label>
         <input type="text" class="form-control" id="title" placeholder="Movie Title"
                @bind-value="title" @bind-value:event="oninput"
-               @onkeypress="@((KeyboardEventArgs e) => TitleKeyPress(e))"
-               />
+               @onkeypress="@((KeyboardEventArgs e) => TitleKeyPress(e))" />
     </div>
     <div class="form-group mx-sm-3 mb-2">
         <select class="form-control" @bind="selectedGenre">
@@ -19,17 +18,49 @@
             }
         </select>
     </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <input type="checkbox" name="form-check-input" id="upcomingReleases" @bind="upcomingReleases" />
+        <label class="form-check-label" for="upcomingReleases">
+            Upcoming Releases
+        </label>
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <input type="checkbox" name="form-check-input" id="upcomingReleases" @bind="inTheaters" />
+        <label class="form-check-label" for="inTheaters">
+            In Theaters
+        </label>
+    </div>
+    <button type="button" class="btn btn-primary mb-2 mx-sm-3" @onclick="SearchForMovies">Filter</button>
+    <button type="button" class="btn btn-danger mb-2" @onclick="Clear">Clear</button>
+
 </div>
 
-@code {
-    string title = "";
-    string selectedGenre = "";
-    private List<Genre> Genres;
-    private void TitleKeyPress(KeyboardEventArgs e)
-    {
-        if (e.Key =="Enter")
+    @code {
+            string title = "";
+            string selectedGenre = "";
+            bool upcomingReleases = false;
+            bool inTheaters = false;
+            private List<Genre> Genres = new List<Genre>() { new Genre() { Id = 1, Name = "Action" },
+            new Genre(){ Id = 2, Name = "Comedy"} };
+        private void SearchForMovies()
         {
+            Console.WriteLine($"title: {title}");
+            Console.WriteLine($"selectedGenre: {selectedGenre}");
+            Console.WriteLine($"upcomingReleases: {upcomingReleases}");
+            Console.WriteLine($"inTheaters: {inTheaters}");
+        }
+        private void Clear()
+        {
+            string title = "";
+            string selectedGenre = "0";
+            bool upcomingReleases = false;
+            bool inTheaters = false;
+        }
+        private void TitleKeyPress(KeyboardEventArgs e)
+        {
+            if (e.Key == "Enter")
+            {
 
+            }
         }
     }
-}

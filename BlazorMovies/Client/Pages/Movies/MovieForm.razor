@@ -35,7 +35,7 @@
                            Label="Summary"
                            For="@(()=> Movie.Summary)" />
         </div>
-    </div>
+        <button class="btn btn-primary" type="submit">Save changes</button>
 </EditForm>
 @code {
     [Parameter] public Movie Movie { get; set; }
